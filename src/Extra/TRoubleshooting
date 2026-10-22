@@ -1,0 +1,40 @@
+Launch the simulation
+
+cd ~/diffbot_ws
+colcon build
+source install/setup.bash
+ros2 launch my_diffbot_gazebo gazebo.launch.py
+
+
+cd ~/diffbot_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+ros2 topic list | rg 'camera|image|scan|imu'
+ros2 topic info /diffbot/camera/image_raw -v
+ros2 topic echo --once /diffbot/camera/camera_info
+ros2 topic hz /diffbot/camera/image_raw
+
+TO view Image
+rqt_image_view /diffbot/camera/image_raw
+
+To launch RViz
+ros2 launch my_diffbot_description display.launch.py
+
+
+# Confirm Gazebo’s camera plugin is installed
+ls /opt/ros/humble/lib/libgazebo_ros_camera.so
+
+# Check that the generated robot contains the camera and correct frame
+ros2 param get /robot_state_publisher robot_description | rg 'camera_sensor|camera_optical_frame'
+
+# Confirm simulation time is advancing; unpause Gazebo if it is not
+ros2 topic echo --once /clock
+
+# Confirm camera TF exists
+ros2 run tf2_ros tf2_echo base_link camera_optical_frame
+
+# Check whether any camera publisher exists
+ros2 topic info /diffbot/camera/image_raw -v
+
+

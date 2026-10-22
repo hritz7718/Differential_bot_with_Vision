@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot name="diffbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Stable entry point. Components live in focused files below. -->
+  <xacro:include filename="$(find my_diffbot_description)/urdf/include/properties.xacro"/>
+  <xacro:include filename="$(find my_diffbot_description)/urdf/include/materials.xacro"/>
+  <xacro:include filename="$(find my_diffbot_description)/urdf/include/base.xacro"/>
+  <xacro:include filename="$(find my_diffbot_description)/urdf/include/sensors.xacro"/>
+  <xacro:include filename="$(find my_diffbot_description)/urdf/gazebo/materials.gazebo.xacro"/>
+  <xacro:include filename="$(find my_diffbot_description)/urdf/gazebo/diff_drive.gazebo.xacro"/>
+  <xacro:include filename="$(find my_diffbot_description)/urdf/gazebo/sensors.gazebo.xacro"/>
+</robot>
